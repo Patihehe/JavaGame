@@ -1,6 +1,6 @@
-package main;
+package userinterface;
 
-public class MainClass {
+public class StartGame {
 
 	public static void main(String[] args) {
 		new Game();

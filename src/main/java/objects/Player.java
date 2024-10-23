@@ -1,4 +1,4 @@
-package entities;
+package objects;
 
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.*;
@@ -6,8 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import utilz.LoadSave;
-import main.Game;
-import utilz.LoadSave;
+import userinterface.Game;
 
 public class Player extends Entity {
 	private BufferedImage[][] animations;

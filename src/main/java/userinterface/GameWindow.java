@@ -1,4 +1,4 @@
-package main;
+package userinterface;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;

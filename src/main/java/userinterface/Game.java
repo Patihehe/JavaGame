@@ -1,8 +1,8 @@
-package main;
+package userinterface;
 
 import java.awt.Graphics;
 
-import entities.Player;
+import objects.Player;
 import levels.LevelManager;
 
 public class Game implements Runnable {
@@ -91,7 +91,6 @@ public class Game implements Runnable {
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-                System.out.println("FPS: " + frames + " | UPS: " + updates);
                 frames = 0;
                 updates = 0;
 
