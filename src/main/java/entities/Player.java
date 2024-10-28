@@ -1,12 +1,14 @@
-package objects;
+package entities;
 
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.*;
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import utilz.LoadSave;
-import userinterface.Game;
+import main.Game;
 
 public class Player extends Entity {
 	private BufferedImage[][] animations;
@@ -17,7 +19,7 @@ public class Player extends Entity {
 	private boolean left, up, right, down, jump;
 	private float playerSpeed = 2.0f;
 	private int[][] lvlData;
-	private float xDrawOffset = 28 * Game.SCALE;
+	private float xDrawOffset = 35 * Game.SCALE;
 	private float yDrawOffset = 65 * Game.SCALE;
 
 	// Jumping / Gravity
@@ -26,6 +28,11 @@ public class Player extends Entity {
 	private float jumpSpeed = -3.25f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
+	private boolean dir = true;
+
+	public void setDir(boolean dir) {
+		this.dir = dir;
+	}
 
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
@@ -44,8 +51,30 @@ public class Player extends Entity {
 		//g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 //		drawHitbox(g);
 
-		g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+		if(!dir){
+			BufferedImage[] tmp = reverseAllImage(playerAction);
+			//g.drawImage(tmp[aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), (int) (95 * Game.SCALE), (int) (95 * Game.SCALE), null);
+			g.drawImage(tmp[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+		}
+		else {
+			//g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+			g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+		}
 		drawHitbox(g);
+	}
+
+	public BufferedImage[] reverseAllImage(String s){// lat nguoc anh
+		int n = mapAni.get(s).length;
+		BufferedImage[] tmp = new BufferedImage[n];
+		for(int i = 0; i < n; i++){
+			BufferedImage image = mapAni.get(s)[i];
+			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+			tx.translate(-image.getWidth(), 0);
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+			image = op.filter(image, null);
+			tmp[i] = image;
+		}
+		return tmp;
 	}
 
 	private void updateAnimationTick() {

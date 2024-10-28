@@ -1,8 +1,9 @@
-package userinterface;
+package main;
+
 
 import java.awt.Graphics;
 
-import objects.Player;
+import entities.Player;
 import levels.LevelManager;
 
 public class Game implements Runnable {

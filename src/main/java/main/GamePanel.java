@@ -1,12 +1,12 @@
-package userinterface;
+package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
-import static userinterface.Game.GAME_HEIGHT;
-import static userinterface.Game.GAME_WIDTH;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 
 public class GamePanel extends JPanel {
 

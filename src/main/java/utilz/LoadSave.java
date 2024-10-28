@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import userinterface.Game;
+import main.Game;
 
 public class LoadSave {
 
