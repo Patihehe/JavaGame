@@ -17,6 +17,8 @@ public class LoadSave {
 	public static final String GOKU_CHEM = "res/chem.png";
 	public static final String GOKU_IDLE = "res/idle.png";
 	public static final String GOKU_RUN = "res/walk.png";
+	public static final String MENU_BUTTONS = "res/button_atlas.png";
+	public static final String MENU_BACKGROUND = "res/menu_background.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage image = null;
