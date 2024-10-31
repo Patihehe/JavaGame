@@ -19,6 +19,10 @@ public class LoadSave {
 	public static final String GOKU_RUN = "res/walk.png";
 	public static final String MENU_BUTTONS = "res/button_atlas.png";
 	public static final String MENU_BACKGROUND = "res/menu_background.png";
+	public static final String PAUSE_BACKGROUND = "res/pause_menu.png";
+	public static final String SOUND_BUTTONS = "res/sound_button.png";
+	public static final String URM_BUTTONS = "res/urm_buttons.png";
+	public static final String VOLUME_BUTTONS = "res/volume_buttons.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage image = null;
