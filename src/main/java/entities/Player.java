@@ -47,18 +47,18 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics g, int lvlOffset) {
 		//g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 //		drawHitbox(g);
 
 		if(!dir){
 			BufferedImage[] tmp = reverseAllImage(playerAction);
 			//g.drawImage(tmp[aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), (int) (95 * Game.SCALE), (int) (95 * Game.SCALE), null);
-			g.drawImage(tmp[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+			g.drawImage(tmp[aniIndex], (int)(hitbox.x - xDrawOffset) - lvlOffset,(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
 		}
 		else {
 			//g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
-			g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
+			g.drawImage(mapAni.get(playerAction)[aniIndex], (int)(hitbox.x - xDrawOffset) - lvlOffset,(int)(hitbox.y - yDrawOffset), (int)(95 * Game.SCALE),  (int)(95 * Game.SCALE), null);
 		}
 		drawHitbox(g);
 	}
@@ -123,8 +123,12 @@ public class Player extends Entity {
 
 		if (jump)
 			jump();
-		if (!left && !right && !inAir)
-			return;
+
+		if(!inAir) {
+			if((!left && !right) || (right && left)){
+				return;
+			}
+		}
 
 		float xSpeed = 0;
 
